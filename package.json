@@ -30,6 +30,9 @@
       "react-app/jest"
     ]
   },
+  "eslintIgnore": [
+    "/src/serviceWorker.ts"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",

@@ -19,11 +19,17 @@ function AddWilder() {
           if (result.data.success) {
             setError('');
           }
-        } catch (error: unknown) {
-          if (error instanceof AxiosError && error.response) {
-            setError(error.response.data.message);
+        } catch (caughtError) {
+          if (axios.isAxiosError(error)) {
+            const err = caughtError as AxiosError;
+            if (err.response) {
+              setError(err.response.data.message);
+            }
           } else {
-            setError(error.message);
+            const err = caughtError as Error;
+            if (err.message) {
+              setError(err.message);
+            }
           }
         }
       }}
